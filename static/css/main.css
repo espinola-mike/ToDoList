@@ -1,0 +1,238 @@
+/* Importando las fuentes -- nada recomendable hacerlo de esta manera */
+@font-face {
+    font-family: "Ubuntu-bold";
+    src: url(../font/Ubuntu/Ubuntu-Bold.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-bold-italic";
+    src: url(../font/Ubuntu/Ubuntu-BoldItalic.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-italic";
+    src: url(../font/Ubuntu/Ubuntu-Italic.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-light";
+    src: url(../font/Ubuntu/Ubuntu-Light.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-light-italic";
+    src: url(../font/Ubuntu/Ubuntu-LightItalic.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-medium";
+    src: url(../font/Ubuntu/Ubuntu-Medium.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-medium-italic";
+    src: url(../font/Ubuntu/Ubuntu-MediumItalic.ttf);
+}
+@font-face {
+    font-family: "Ubuntu-regular";
+    src: url(../font/Ubuntu/Ubuntu-Regular.ttf);
+}
+
+/* Reglas css generales */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu-regular', sans-serif;
+}
+/* variables */
+:root{
+    --blue: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #636363;
+    --red-1: #DC3545;
+    --red-2: #EA868F;
+    --green-1: #198754;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* estilos del contenedor principal */
+.container{
+    position: relative;
+    min-height: 100vh;
+}
+/* formulario de registro */
+.container.form{
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* Estilos de formulario */
+.container .form{
+    position: relative;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.10);
+    max-width: 768px;
+    min-width: 480px;
+    padding: 30px;
+    /* margin: 30px auto; */
+}
+
+.container .form .header{
+    color: var(--black2);
+    margin-bottom: 20px;
+}
+
+.container .form label{
+    color: var(--black2);
+    font-size: 16px;
+}
+
+.container .form input{
+    display: block;
+    background: var(--grey);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.10);
+    margin-bottom: 15px;
+    height: 30px;
+    font-size: 14px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    transition: 0.1s;
+}
+
+.container .form input:hover,
+.container .form input:focus{
+    border-bottom: 2px solid var(--blue);
+}
+
+.container .form .seePassword{
+    display: grid;
+    grid-template-columns: .9fr .1fr;
+    grid-gap: 10px;
+}
+
+.container .form .seePassword .iconBox{
+    font-size: 2em;
+    color: var(--black1);
+    transition: .5s color ease;
+}
+
+.container .form .seePassword .iconBox:hover{
+    color: var(--blue);
+}
+
+.container .form .seePassword .iconBox.active{
+    color: var(--blue);
+}
+
+.container .form .btnSubmit{
+    text-align: end;
+}
+
+.container .form .btnSubmit button{
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    background: var(--blue);
+    color: var(--black1);
+    transition: .1s;
+}
+
+.container .form .btnSubmit button:hover{
+    background: var(--white);
+    color: var(--black1);
+    border: 1px solid var(--blue);
+}
+
+.container .form .btnSubmit button:active{
+    background: var(--blue);
+    color: var(--black1);
+    border: 1px solid var(--grey);
+}
+
+.container.form .go_to_form{
+    color: var(--white);
+    margin-top: 1em;
+    text-align: center;
+}
+.container.form .go_to_form span a{
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.container.form .go_to_form span a:hover{
+    text-decoration: underline;
+}
+
+.container.form .go_to_form span a:active{
+    text-decoration: none;
+    color: var(--white);
+}
+
+/* Caja de errores (validaciones) del servidor */
+
+.container.form .errors{
+    color: #2f2921;
+    position: relative;
+    width: 100%;
+    padding: 10px 5px;
+    padding-left: 20px;
+    margin-top: 20px;
+    background: var(--red-2);
+    border: 1px solid var(--red-1);
+}
+
+.container.form .errors .errorHeader{
+    margin-bottom: 10px;
+}
+
+.container.form .errors ul{ 
+    list-style: none;
+    font-size: 0.8em;
+}
+.container.form .errors ul li{ 
+    margin-bottom: 5px;
+}
+.container.form .errors ul li span{ 
+    font-weight: 600;
+}
+
+/* Validacion de la contraseña */
+
+.container .form input.invalid{
+    border-bottom: 2px solid var(--red-1);
+}
+
+.container .form input.valid{
+    border-bottom: 2px solid var(--green-1);
+}
+
+.container .form div.password_error{
+    position: relative;
+}
+
+.container .form div.password_error,
+.container .form div.no_equals,
+.container .form div.invalid_email,
+.container .form div.invalid_user_name{
+    display: block;
+    margin: 10px auto;
+    font-size: 0.8em;
+    color: var(--red-1);
+    /* background: var(--red-2); */
+    padding: 5px;
+    /* border: 1px solid var(--red-1); */
+    /* border-radius: 5px; */
+}
+
+.container .form div.password_error ul{
+    margin-left: 2em;
+}
+
