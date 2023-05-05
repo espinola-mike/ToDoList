@@ -79,6 +79,7 @@
                     <?php endif; ?>
                 </div>
             </div>
+            <!-- modal para gestion de perfil -->
                 <div class="userModalConfig">
                     <div class="userInfo">
                         <div class="userImg">
@@ -102,7 +103,7 @@
                         </a>
                     </div>
                 </div>
-
+            <!-- Formulario de registro de tareas pendientes -->
             <div class="newTaskContainer">
                 <header>
                     <h2>Hoy</h2>
@@ -116,10 +117,10 @@
                 </div>
                 <div class="newTaskForm disabled">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                        <input class="taskName" type="text" name="taskName" placeholder="Nombre de la tarea">
-                        <textarea class="taskDescription" name="taskDescription" placeholder="Descripción" maxlength="255"></textarea>
+                        <input class="taskName" type="text" name="taskName" placeholder="Nombre de la tarea" maxlength="100" required>
+                        <textarea class="taskDescription" name="taskDescription" placeholder="Descripción" maxlength="150" required></textarea>
                         <div class="dateSubmitContainer">
-                            <input class="taskDate" type="date" name="taskDate">
+                            <input class="taskDate" type="date" name="taskDate" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" required>
                             <div class="btnTaskContainer">
                                 <button class="btnCancelTask">Cancelar</button>
                                 <input class="btnAddTask" type="submit" name="addTask" value="Añadir tarea">
@@ -129,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="cardBox">
+            <!-- <div class="cardBox">
                 <div class="card">
                     <div>
                         <div class="numbers">1,504</div>
@@ -166,6 +167,21 @@
                         <ion-icon name="cash-outline"></ion-icon>
                     </div>
                 </div>
+            </div> -->
+
+            <!-- Tareas de usuario -->
+            <div class="cardBox">
+                <?php foreach($tasks as $task): ?>
+                    <div class="card">
+                        <div>
+                            <div class="numbers"><?php echo $task['task_name']; ?></div>
+                            <div class="cardName"><?php echo $task['task_description']; ?></div>
+                        </div>
+                        <div class="iconBox">
+                            <span><?php echo $task['created_at']; ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
            
@@ -173,7 +189,8 @@
         <!-- main final -->
     </div>
     <!-- container final -->
-
+            
+        <!-- Modal con formulario para subir foto de perfil -->
             <div class="modalImageUpload">
                 <div class="modalImageUpload-form">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
@@ -195,7 +212,7 @@
                             </li>
                             <li class="inputFile">
                                 <!-- <label for="image">Cambiar Foto de Perfil</label> -->
-                                <input type="file" id="image" name="image" aria-label="Imagen a subir" title="No has seleccionado ninguna imagen" require>
+                                <input type="file" id="image" name="image" aria-label="Imagen a subir" title="No has seleccionado ninguna imagen" required>
                             </li>
                             <li class="inputSubmit">
                                 <input type="submit" id="imageUpload" name="imageUpload" value="Subir Foto">

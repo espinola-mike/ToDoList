@@ -15,7 +15,7 @@
             </div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" id="form">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Ingrese Email" value="<?php if(!empty($errors) && isset($email)) echo $email ?>" require>
+                <input type="email" name="email" id="email" placeholder="Ingrese Email" value="<?php if(!empty($errors) && isset($email)) echo $email ?>" required>
                 <label for="password">Contraseña</label>
                 <div class="seePassword">
                     <input type="password" name="password" id="password" maxlength="16" placeholder="Ingrese contraseña" value="<?php if(!empty($errors) && isset($password)) echo $password ?>" required>

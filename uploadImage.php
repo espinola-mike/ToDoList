@@ -1,6 +1,6 @@
 <?php 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['imageUpload'] && !empty($_FILES)) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['imageUpload']) && !empty($_FILES)) {
     $image = $_FILES['image'];
     $check = getimagesize($image['tmp_name']);
     if($check) {

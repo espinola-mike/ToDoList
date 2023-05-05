@@ -1,5 +1,6 @@
 <?php session_start();
 
+require 'lib/Database.php';
 require 'models/User.php';
 
 if (isset($_SESSION['user'])) {

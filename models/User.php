@@ -1,6 +1,5 @@
 <?php
 
-require 'lib/Database.php';
 
 class User extends Database{
 
@@ -22,6 +21,22 @@ class User extends Database{
         return $user;
     }
 
+    static function getUserId($email){
+        try{
+            $database = new Database();
+            $pdo = $database->connect();
+            $sql = "SELECT id FROM users WHERE email = :email";
+            $query = $pdo->prepare($sql);
+            $query->execute([':email'=>$email]);
+            $userId = $query->fetch();
+            $pdo = null;
+            return $userId['id'];
+        } catch(PDOException $e){
+            echo 'Error: ' . $e->getMessage();
+            return false;
+        }
+    }
+
     static function getUserByEmail($email){
         try{
             $pdo = new Database();
@@ -31,9 +46,11 @@ class User extends Database{
             $query->execute([':email'=>$email]);
             $user = $query->fetch();
             $user = new User($user['email'], $user['user_name'], $user['user_image'], $user['password']);
+            $pdo = null;
             return $user;
         }catch(PDOException $e){
-            return 'Error: ' . $e;
+            echo 'Error: ' . $e->getMessage();
+            return false;
         }
     }
 

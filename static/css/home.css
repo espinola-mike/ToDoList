@@ -638,6 +638,11 @@ body{
     width: 100%;
 }
 
+.taskName{
+    font-size: 1em;
+    font-weight: 600;
+}
+
 .taskDescription{
     resize: none;
 }

@@ -1,5 +1,6 @@
 <?php session_start();
 
+require 'lib/Database.php';
 require 'models/User.php';
 
 // Si existe una sesion activa ir a index.php
