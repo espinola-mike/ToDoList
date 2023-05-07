@@ -49,6 +49,10 @@
     --red-1: #DC3545;
     --red-2: #EA868F;
     --green-1: #198754;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --yellow-2: #c9ff07;
+    --blue-2: #9EC5FE;
 }
 body{
     width: 100%;
@@ -101,6 +105,7 @@ body{
 .navigation ul li a{
     position: relative;
     display: flex;
+    align-items: center;
     width: 100%;
     text-decoration: none;
     color: var(--white);
@@ -117,8 +122,8 @@ body{
     line-height: 60px;
     text-align: center;
 }
-.navigation ul li a .icon ion-icon{
-    font-size: 1.75em;
+.navigation ul li a .icon font-aw-icon{
+    font-size: 1.25em;
 }
 .navigation ul li a .title{
     position: relative;
@@ -194,7 +199,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5em;
+    font-size: 2em;
     cursor: pointer;
 }
 
@@ -379,9 +384,8 @@ body{
     position: relative;
     width: 100%;
     padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .cardBox .card{
@@ -390,38 +394,41 @@ body{
     padding: 30px;
     border-radius: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;
     box-shadow: 0 7px 25px rgba(0,0,0,0.10);
+    margin-bottom: 30px;
 }
 
-.cardBox .card .numbers{
-    position: relative;
-    font-weight: 500;
-    font-size: 2.5em;
+.card div{
+    margin-bottom: 10px;
+}
+
+.card .taskName{
+    font-family: 'Ubuntu-light', sans-serif;
+    font-weight: 100;
+    font-size: 1.2em !important;
     color: var(--blue);
 }
 
-.cardBox .card .cardName{
-    color: var(--black2);
-    font-size: 1.1em;
-    margin-top: 5px;
+.card .taskDescription{
+    font-size: .9em;
+    color: #666666;
 }
 
-.cardBox .card .iconBox{
-    font-size: 3em;
-    color: var(--black2);
+.card .taskDate{
+    text-transform: capitalize;
+    font-size: .8em;
+    font-weight: bold;
+    width: fit-content;
+    padding: 1px;
 }
 
-.cardBox .card:hover{
-    background: var(--blue);
-}
-
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBox{
-    color: var(--white);
-}
+.card .taskDate.lost{ background: var(--red-1); }
+.card .taskDate.today{ background: var(--orange); }
+.card .taskDate.tomorrow{ background: var(--yellow); }
+.card .taskDate.week{ background: var(--yellow-2); }
+.card .taskDate.month{ background: var(--blue-2); }
 
 /* Modal para subir foto */
 
@@ -562,6 +569,7 @@ body{
     position: relative;
     width: 100%;
     padding: 20px;
+    margin-top: 20px;
 }
 
 .newTaskContainer header{
@@ -599,7 +607,7 @@ body{
 }
 
 .newTask .icon{
-    font-size: 1.75em;
+    font-size: 1.25em;
     color: var(--blue);
     margin-right: 10px;
 }
@@ -678,7 +686,6 @@ body{
     padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
 }
 
 .btnCancelTask{
@@ -721,12 +728,12 @@ body{
         width: calc(100% - 300px);
         left: 300px;
     }
-    .cardBox{
+    /* .cardBox{
         grid-template-columns: repeat(2, 1fr);
-    }
+    } */
 }
 
-@media (max-width: 768px){
+/* @media (max-width: 768px){
     .details{
         grid-template-columns: repeat(1, 1fr);
     }
@@ -736,16 +743,16 @@ body{
     .details .status.inprogress{
         white-space: nowrap;
     }
-}
+} */
 
 @media (max-width: 480px){
-    .cardBox{
+    /* .cardBox{
         grid-template-columns: repeat(1, 1fr);
     }
     .detailsHeader h2, 
     .customersHeader h2{
         font-size: 20px;
-    }
+    } */
     .navigation{
         width: 100%;
         left: -100%;

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./static/css/home.css">
     <link rel="stylesheet" href="./static/fontawesome-free-6.4.0-web/css/all.min.css">
-    <title>Home</title>
+    <title>Home | Bandeja de Entrada</title>
 </head>
 <body>
 <div class="container">
@@ -95,33 +95,21 @@
                     </div>
                 </div>
 
-            <!-- Formulario de registro de tareas pendientes -->
-
-            <div class="newTaskContainer">
-                <header>
-                    <h2>Hoy</h2>
-                    <span id="today" data-today="<?php echo date('Y/m/d', strtotime('now')); ?>"></span>
-                </header>
-                <div class="newTask">
-                    <div class="btnNewTask">
-                        <span class="icon"><font-aw-icon class="fa fa-add"></font-aw-icon></span>
-                        <span class="title">Añadir tarea</span>
-                    </div>
-                </div>
-                <div class="newTaskForm disabled">
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                        <input class="taskName" type="text" name="taskName" placeholder="Nombre de la tarea" maxlength="100" required>
-                        <textarea class="taskDescription" name="taskDescription" placeholder="Descripción" maxlength="150" required></textarea>
-                        <div class="dateSubmitContainer">
-                            <input class="taskDate" type="date" name="taskDate" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" required>
-                            <div class="btnTaskContainer">
-                                <button class="btnCancelTask">Cancelar</button>
-                                <input class="btnAddTask" type="submit" name="addTask" value="Añadir tarea">
-                            </div>
+            <!-- Tareas de usuario -->
+            <div class="cardBox">
+                <?php if(!empty($tasks)): ?>
+                    <?php foreach($tasks as $task): ?>
+                        <div class="card">
+                            <div class="taskName"><?php echo $task['task_name']; ?></div>
+                            <div class="taskDescription"><?php echo $task['task_description']; ?></div>
+                            <div class="taskDate" data-taskdate="<?php echo $task['task_date']; ?>"></div>
                         </div>
-                    </form>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <h2>No Hay Tareas Pendientes</h2>
+                <?php endif; ?>
             </div>
+
            
         </div> 
         <!-- main final -->
@@ -160,12 +148,13 @@
                 </div>
             </div>
     
-    <script type="module" src="/static/js/ionicons.esm.js"></script>
-    <script nomodule src="/static/js/ionicons.js"></script>
-    <!-- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
+    <!-- <script type="module" src="/static/js/ionicons.esm.js"></script>
+    <script nomodule src="/static/js/ionicons.js"></script> -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="static/js/moment.min.js"></script>
     <script src="static/js/moment.locale.es.js"></script>
+    <script src="static/js/task.js"></script>
     <script>
         let toggle = document.querySelector('.toggle');
         let navigation = document.querySelector('.navigation');

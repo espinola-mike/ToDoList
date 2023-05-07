@@ -17,9 +17,29 @@ $allTasks = Task::getAllTasks(User::getUserId($email));
 $todayTasks = Task::getTodayTasks(User::getUserId($email));
 $nextTasks = Task::getNextTasks(User::getUserId($email));
 
+// Comprobando la seccion seleccionada
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    switch ($_GET['section']) {
+        case 'inbox':
+            $tasks = &$allTasks;
+            break;
+
+        case 'today':
+            $tasks = &$todayTasks;
+            break;
+
+        case 'next':
+            $tasks = &$nextTasks;
+            break;
+        
+        default:
+            header('Location: index.php');
+            break;
+    }
+}
+
 require 'uploadImage.php'; # Script encargado de subir foto de perfil
-require 'addTask.php'; # Script encargado de recibir datos de la tarea desde el formulario y registrarlo en la base de datos
-require 'views/home.view.php'; # Plantilla o vista del home
+require 'views/task.view.php'; # Plantilla o vista del inbox
 
 
 ?>
