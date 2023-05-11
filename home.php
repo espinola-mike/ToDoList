@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 require 'lib/Database.php';
-require 'models/User.php'; # Requiriendo el modelo user
+require 'models/User.php';
 require 'models/Task.php';
 
 $email = $_SESSION['user']; # Tomando email desde la sesion activa

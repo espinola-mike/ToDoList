@@ -1,6 +1,18 @@
 <?php
+require 'lib/Database.php';
+require 'models/User.php';
+require 'models/Task.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addTask'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['finish_task'])) {
+        Task::deleteTask($_GET['finish_task']);
+    } else {
+        Task::deleteTask($_GET['delete_task']);
+    }
+    header('Location: task.php?section='.$_GET['section']);
+}
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateTask'])) {
     $task_name = $_POST['taskName'];
     $task_description = $_POST['taskDescription'];
     $task_date = $_POST['taskDate'];
@@ -37,10 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addTask'])) {
     // Si no existen errores
     if (empty($errors)) {
         $task = Task::newTask($_POST);
-        $task->createTask();
-        header('Location: index.php');
+        $task->updateTask($_POST['taskId']);
+        header('Location: task.php?section='.$_POST['section']);
     }
-
 }
 
 ?>

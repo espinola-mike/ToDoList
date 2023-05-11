@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión | TODO App</title>
     <link rel="stylesheet" href="./static/css/main.css">
+    <link rel="stylesheet" href="./static/fontawesome-free-6.4.0-web/css/all.min.css">
 </head>
 <body>
     <div class="container form">
@@ -20,7 +21,7 @@
                 <div class="seePassword">
                     <input type="password" name="password" id="password" maxlength="16" placeholder="Ingrese contraseña" value="<?php if(!empty($errors) && isset($password)) echo $password ?>" required>
                     <div class="iconBox" id="see">
-                        <ion-icon name="eye-outline"></ion-icon>
+                        <fa-icon class="fa fa-eye"></fa-icon>
                     </div>
                 </div>
                 <div class="btnSubmit">

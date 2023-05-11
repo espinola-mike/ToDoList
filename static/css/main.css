@@ -62,9 +62,19 @@ body{
 }
 /* formulario de registro */
 .container.form{
-    background: #0f0c29;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: #00B4DB;  /* fallback for old browsers */
+/* background: -webkit-linear-gradient(to right, #0083B0, #6ce4ff);  Chrome 10-25, Safari 5.1-6 */
+/* background: linear-gradient(to right, #0083B0, #6ce4ff); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    /* background: #000046;  fallback for old browsers */
+    /* background: -webkit-linear-gradient(to bottom, #1CB5E0, #000046);  Chrome 10-25, Safari 5.1-6 */
+    /* background: linear-gradient(to bottom, #1CB5E0, #000046); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,7 +128,7 @@ body{
 }
 
 .container .form .seePassword .iconBox{
-    font-size: 2em;
+    font-size: 1.5em;
     color: var(--black1);
     transition: .5s color ease;
 }

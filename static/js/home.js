@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Variables del DOM asociadas a la configuracion de usuario
     const user = document.querySelector('.user');
-
     const userModalConfig = document.querySelector('.userModalConfig');
-
     const btnUploadImage = document.querySelector('.upload');
     const modalImageUpload = document.querySelector('.modalImageUpload');
     const modalImageUploadForm = document.querySelector('.modalImageUpload-form');
@@ -20,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userModalConfig.classList.toggle('active');
 
     });
+
     // Agregar evento de clic al documento
     document.addEventListener('click', (e) => {
         // 'Delegando' eventos a elementos del documento
@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (today) {
         today.textContent = moment(today.dataset.today).format("dddd MMMM DD");
     }
-    // Crear una nueva tarea
+
+    // Crear una nueva tarea(formulario).
     const btnNewTask = document.querySelector('.btnNewTask');
     const btnCancelTask = document.querySelector('.btnCancelTask');
     const newTask = document.querySelector('.newTask');

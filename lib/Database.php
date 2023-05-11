@@ -1,16 +1,13 @@
 <?php
-
-class Database
-{
-
+// Clase para conectar a la base de datos
+class Database{
     private $host;
     private $db;
     private $user;
     private $password;
     private $charset;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->host = 'localhost';
         $this->db = 'todo_list_app';
         $this->user = 'root';
@@ -18,8 +15,7 @@ class Database
         $this->charset = 'utf8mb4';
     }
 
-    function connect()
-    {
+    function connect(){
         try {
             $connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
             $options = [

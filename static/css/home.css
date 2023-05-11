@@ -43,6 +43,7 @@
 :root{
     --blue: #287bff;
     --white: #fff;
+    --white-2: #e9e9e9;
     --grey: #f5f5f5;
     --black1: #222;
     --black2: #999;
@@ -53,6 +54,7 @@
     --yellow: #ffc107;
     --yellow-2: #c9ff07;
     --blue-2: #9EC5FE;
+    --blue-3: #141E30;
 }
 body{
     width: 100%;
@@ -62,6 +64,9 @@ body{
 .container{
     position: relative;
     width: 100%;
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* MENU DE NAVEGACION */
@@ -70,10 +75,13 @@ body{
     position: fixed;
     width: 300px;
     height: 100%;
-    background: var(--blue);
+    /* background: var(--blue); */
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     box-shadow: 0 0 5px var(--black1);
     /* TIP: uso de bordes para simular un margen, en este caso el margen izquierdo */
-    border-left: 10px solid var(--blue);
+    border-left: 10px solid transparent;
     transition: 0.5s;
     /* TIP: por ser ser responsive no se permitira el scroll en el menu de navegacion */
     overflow: hidden;
@@ -94,14 +102,14 @@ body{
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
+.navigation ul li:nth-child(1){
+    margin-bottom: 10px;
+    pointer-events: none;
+}
 .navigation ul li:hover,
 .navigation ul li.hovered{
     background: var(--white);
 }
-/* .navigation ul li:nth-child(1){
-    margin-bottom: 40px;
-    pointer-events: none;
-} */
 .navigation ul li a{
     position: relative;
     display: flex;
@@ -112,7 +120,7 @@ body{
 }
 .navigation ul li:hover a,
 .navigation ul li.hovered a{
-    color: var(--blue);
+    color: #141E30;
 }
 .navigation ul li a .icon{
     position: relative;
@@ -122,7 +130,7 @@ body{
     line-height: 60px;
     text-align: center;
 }
-.navigation ul li a .icon font-aw-icon{
+.navigation ul li a .icon{
     font-size: 1.25em;
 }
 .navigation ul li a .title{
@@ -145,7 +153,7 @@ body{
     top: -50px;
     width: 50px;
     height: 50px;
-    background: var(--blue);
+    background: transparent;
     border-radius: 50%;
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
@@ -159,7 +167,7 @@ body{
     bottom: -50px;
     width: 50px;
     height: 50px;
-    background: var(--blue);
+    background: transparent;
     border-radius: 50%;
     box-shadow: 35px -35px 0px 10px var(--white);
     pointer-events: none;
@@ -193,6 +201,7 @@ body{
 }
 
 .toggle{
+    color: var(--blue);
     position: relative;
     width: 60px;
     height: 60px;
@@ -259,17 +268,18 @@ body{
     z-index: -100;
     top: 70px;
     right: 10px;
-    display: flex;
-    flex-direction: column;
+    display: none;
     background: var(--grey);
-    box-shadow: 0 7px 25px rgba(0,0,0,0.10);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.20);
     padding: 1em;
-    border: 1px solid var(--black2);
+    border: 1px solid var(--white-2);
     border-radius: 20px;
     transition: .2s;
 }
 
 .userModalConfig.active{
+    display: flex;
+    flex-direction: column;
     z-index: 100;
 }
 
@@ -289,7 +299,7 @@ body{
 .closeSession a{
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .closeSession .title{
@@ -297,7 +307,7 @@ body{
 }
 
 .closeSession .icon{
-    font-size: 1.5em;
+    font-size: 1.10em;
     margin-right: 5px;
 }
 
@@ -353,18 +363,29 @@ body{
     object-fit: cover;
 }
 
-.userModalConfig .userInfo .userImg img:last-child{
+.userModalConfig .userInfo .userImg .upload{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     background: var(--white);
-    padding: 2px;
-    bottom: 5%;
-    right: 5%;
+    bottom: 3%;
+    right: 3%;
     z-index: 10;
-    width: 40%;
-    height: 40%;
+    width: 35%;
+    height: 35%;
+    font-size: 1em;
     border-radius: 50%;
-    border: 1px solid var(--black1);
+    /* border: 1px solid var(--black1); */
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
     cursor: pointer;
+    color: var(--blue-3);
+    transition: .1s;
+}
+
+.userModalConfig .userInfo .userImg .upload:hover {
+    border: 1px solid black;
 }
 
 .userModalConfig .closeSession a{
@@ -388,16 +409,24 @@ body{
     flex-direction: column;
 }
 
+.cardBox h2{
+    color: var(--blue);
+}
+
 .cardBox .card{
     position: relative;
     background: var(--white);
     padding: 30px;
     border-radius: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     box-shadow: 0 7px 25px rgba(0,0,0,0.10);
     margin-bottom: 30px;
+}
+
+.card.disabled{
+    display: none;
 }
 
 .card div{
@@ -421,7 +450,8 @@ body{
     font-size: .8em;
     font-weight: bold;
     width: fit-content;
-    padding: 1px;
+    padding: 4px;
+    border-radius: 4px;
 }
 
 .card .taskDate.lost{ background: var(--red-1); }
@@ -429,6 +459,24 @@ body{
 .card .taskDate.tomorrow{ background: var(--yellow); }
 .card .taskDate.week{ background: var(--yellow-2); }
 .card .taskDate.month{ background: var(--blue-2); }
+
+.card .taskActions{
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+    grid-gap: 10px;
+}
+
+.card .taskActions.disabled{
+    display: none;
+}
+
+.taskActions a{
+    color: var(--blue);
+    font-size: 1.25em;
+    text-decoration: none;
+}
 
 /* Modal para subir foto */
 
@@ -514,31 +562,46 @@ body{
     object-fit: cover;
 }
 
-.modalImageUpload-form .inputFile input{
-    position: relative;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    width: 150px;
-    border: 1px solid var(--black1);
-    border-radius: 5px;
-    padding: 2px;
+.modalImageUpload-form .input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.modalImageUpload-form .inputFile input::after{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: 'Seleccionar Fotografia';
+.modalImageUpload-form .input .inputFile input{
+    display: none;
+}
+
+.modalImageUpload-form .input .inputFile .btnInputImage {
+    font-size: .8em;
+    color: var(--blue-3);
     background: var(--white);
-    color: var(--black1);
-    width: 100%;
-} 
+    border: 1px solid var(--blue);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.modalImageUpload-form .input .inputFile .btnInputImage:hover{
+    background: var(--blue);
+}
+
+.modalImageUpload-form .input .inputFile .btnInputImage.valid{
+    background: #02ff899d;
+}
+.modalImageUpload-form .input .inputFile .btnInputImage.invalid{
+    background: var(--red-2);
+}
 
 .modalImageUpload-form .inputSubmit{
     text-align: end;
+}
+
+.modalImageUpload-form .inputSubmit input:disabled{
+    pointer-events: none;
+    background: #ccc;
+    border: #aaa;
 }
 
 .modalImageUpload-form .inputSubmit input, .btnAddTask{
@@ -548,6 +611,7 @@ body{
     padding: 5px 10px;
     background: var(--white);
     color: var(--black1);
+    cursor: pointer;
     transition: .1s;
 }
 
@@ -627,11 +691,14 @@ body{
     box-shadow: 0 7px 25px rgba(0,0,0,0.1);
     border: 1px solid rgba(70, 69, 69, 0.1);
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .newTaskForm.disabled{
     display: none;
 }
+
+.newTaskForm .hiddenInputs{ display: none; }
 
 .newTaskForm input,
 .newTaskForm textarea{

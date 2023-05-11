@@ -9,57 +9,67 @@
     <title>Home</title>
 </head>
 <body>
-<div class="container">
+    <!-- Contenido principal -->
+    <div class="container">
+        <!-- Menu lateral o aside -->
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="./index.php">
-                        <span class="icon"><font-aw-icon class="fa fa-home-user"></font-aw-icon></span>
+                    <a href="#">
+                        <span class="icon"><fa-icon class="fa fa-user-circle"></fa-icon></span>
                         <span class="title"><?php echo $user->getUserName(); ?></span>
                     </a>
                 </li>
                 <li>
+                    <a href="./index.php">
+                        <span class="icon"><fa-icon class="fa fa-home-user"></fa-icon></span>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+                <li>
                     <a href="./task.php?section=inbox">
-                        <span class="icon"><font-aw-icon class="fa fa-inbox"></font-aw-icon></span>
+                        <span class="icon"><fa-icon class="fa fa-inbox"></fa-icon></span>
                         <span class="title">Bandeja de entrada</span>
                         <span><?php echo count($allTasks) ?></span>
                     </a>
                 </li>
                 <li>
                     <a href="./task.php?section=today">
-                        <span class="icon"><font-aw-icon class="fa fa-calendar-day"></font-aw-icon></span>
+                        <span class="icon"><fa-icon class="fa fa-calendar-day"></fa-icon></span>
                         <span class="title">Hoy</span>
                         <span><?php echo count($todayTasks) ?></span>
                     </a>
                 </li>
                 <li>
                     <a href="./task.php?section=next">
-                        <span class="icon"><font-aw-icon class="fa fa-calendar-days"></font-aw-icon></span>
+                        <span class="icon"><fa-icon class="fa fa-calendar-days"></fa-icon></span>
                         <span class="title">Próximo</span>
                         <span><?php echo count($nextTasks) ?></span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon"><font-aw-icon class="fa fa-key"></font-aw-icon></span>
+                        <span class="icon"><fa-icon class="fa fa-key"></fa-icon></span>
                         <span class="title">Password</span>
                     </a>
                 </li>
                 <li>
                     <a href="./close.php">
-                        <span class="icon"><font-aw-icon class="fa fa-outdent"></font-aw-icon></span>
+                        <span class="icon"><fa-icon class="fa fa-sign-out"></fa-icon></span>
                         <span class="title">Cerrar Sesión</span>
                     </a>
                 </li>
             </ul>
+
         </div>
+        <!-- aside -->
 
         <!-- main -->
         <div class="main">
             <!-- Barra superior -->
             <div class="topbar">
                 <div class="toggle">
-                    <font-aw-icon class="fa fa-burger"></font-aw-icon>
+                    <fa-icon class="fa fa-bars"></fa-icon>
                 </div>
                 <!-- Imagen de usuario -->
                 <div class="user">
@@ -79,7 +89,8 @@
                             <?php else: ?>
                                 <img src="./static/img/user.png" alt="User image">
                             <?php endif; ?>
-                            <img class="upload" src="./static/img/ionicons/camera.svg" alt="Camera image" title="Subir/Cambiar foto de perfil.">
+                            <!-- <img class="upload" src="./static/img/ionicons/camera.svg" alt="Camera image" title="Subir/Cambiar foto de perfil."> -->
+                            <fa-icon class="upload fa fa-camera" title="Subir/Cambiar foto de perfil."></fa-icon>
                         </div>
                         <div class="userName">
                             <span><?php echo $user->getUserName(); ?></span>
@@ -89,7 +100,7 @@
                     <hr>
                     <div class="closeSession">
                         <a href="./close.php">
-                            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                            <span class="icon"><fa-icon class="fa fa-sign-out"></fa-icon></span>
                             <span class="title">Cerrar Sesión</span>
                         </a>
                     </div>
@@ -104,14 +115,14 @@
                 </header>
                 <div class="newTask">
                     <div class="btnNewTask">
-                        <span class="icon"><font-aw-icon class="fa fa-add"></font-aw-icon></span>
+                        <span class="icon"><fa-icon class="fa fa-add"></fa-icon></span>
                         <span class="title">Añadir tarea</span>
                     </div>
                 </div>
                 <div class="newTaskForm disabled">
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <input class="taskName" type="text" name="taskName" placeholder="Nombre de la tarea" maxlength="100" required>
-                        <textarea class="taskDescription" name="taskDescription" placeholder="Descripción" maxlength="150" required></textarea>
+                        <textarea class="taskDescription" name="taskDescription" placeholder="Descripción" maxlength="500" required></textarea>
                         <div class="dateSubmitContainer">
                             <input class="taskDate" type="date" name="taskDate" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" required>
                             <div class="btnTaskContainer">
@@ -135,7 +146,7 @@
                         <ul>
                             <li class="modalImageUpload-header">
                                 <span class="close">
-                                    <ion-icon name="close-circle-outline"></ion-icon>
+                                    <fa-icon class="fa fa-window-close"></fa-icon>
                                 </span>
                                 <header><h2>Imagen de perfil</h2></header>
                             </li>
@@ -148,22 +159,22 @@
                                     <?php endif; ?>
                                 </div>
                             </li>
-                            <li class="inputFile">
-                                <!-- <label for="image">Cambiar Foto de Perfil</label> -->
-                                <input type="file" id="image" name="image" aria-label="Imagen a subir" title="No has seleccionado ninguna imagen" required>
-                            </li>
-                            <li class="inputSubmit">
-                                <input type="submit" id="imageUpload" name="imageUpload" value="Subir Foto">
+                            <li class="input">
+                                <div class="inputFile">
+                                    <input type="file" id="inputImage" name="image" accept="image/*" aria-label="Imagen a subir" title="No has seleccionado ninguna imagen" required>
+                                    <button id="btnInputImage" class="btnInputImage">
+                                        <span class="icon"><fa-icon class="fa fa-upload"></fa-icon></span>
+                                        <span class="title">Selecciona una imagen</span>
+                                    </button>
+                                </div>
+                                <div class="inputSubmit">
+                                    <input disabled type="submit" id="imageUpload" name="imageUpload" value="Subir Foto">
+                                </div>
                             </li>
                         </ul>
                     </form>
                 </div>
             </div>
-    
-    <script type="module" src="/static/js/ionicons.esm.js"></script>
-    <script nomodule src="/static/js/ionicons.js"></script>
-    <!-- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
     <script src="static/js/moment.min.js"></script>
     <script src="static/js/moment.locale.es.js"></script>
     <script>
@@ -191,5 +202,6 @@
         });
     </script>
     <script src="./static/js/home.js"></script>
+    <script src="./static/js/uploadimage.js"></script>
 </body>
 </html>

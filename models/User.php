@@ -1,13 +1,13 @@
 <?php
-
-
+// Clase user / Control de usuarios / CRUD de usuarios
 class User extends Database{
-
+    // Atributos de la clase
     private $email;
     private $user_name;
     private $user_image;
     private $password;
 
+    // Constructor de la clase
     public function __construct($email, $user_name, $user_image, $password){
         parent::__construct();
         $this->email = $email;
@@ -16,11 +16,14 @@ class User extends Database{
         $this->user_image = $user_image;
     }
 
+    // Método estático que devuelve una instancia de la clase usuario.
+    // Recibe como parametro un array asociativo con los atributos necesarios.
     static function newUser($data){
         $user = new User($data['email'], $data['user_name'], null, hash('sha512', $data['password1']));
         return $user;
     }
 
+    // Método estático que devuelve el id de un usuario.
     static function getUserId($email){
         try{
             $database = new Database();
@@ -37,6 +40,8 @@ class User extends Database{
         }
     }
 
+    // Método estático que devuelve una instancia de la clase usuario.
+    // En este caso recibe como parametro el email de dicho usuario.
     static function getUserByEmail($email){
         try{
             $pdo = new Database();
@@ -54,6 +59,7 @@ class User extends Database{
         }
     }
 
+    // (Create) Método que crea un nuevo usuario en la base de datos.
     public function createUser(){
         try {
             $pdo = $this->connect();
@@ -68,6 +74,7 @@ class User extends Database{
         }
     }
 
+    // (Update) Método que actualiza un registro en la base de datos.
     public function updateUser(){
         try {
             $pdo = $this->connect();
