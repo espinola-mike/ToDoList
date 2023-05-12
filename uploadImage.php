@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['imageUpload']) && !emp
         
         header('Location: index.php');
     }else{
-        $error = "El archivo subido no es una imagen o es muy pesado.";
+        $errors['file'] = "El archivo subido no es una imagen o es muy pesado.";
     }
 }
 

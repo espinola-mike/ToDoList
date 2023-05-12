@@ -1,3 +1,4 @@
+// Elementos del DOM para subir imagen de usuario
 const inputImage = document.getElementById('inputImage');
 const btnInputImage = document.getElementById('btnInputImage');
 const inputTitle = btnInputImage.querySelector('.title');
@@ -29,3 +30,12 @@ inputImage.addEventListener('change', (e) => {
         inputSubmit.setAttribute('disabled', 'true');
     }
 });
+
+// Ventana de error (en caso de que no sea una imagen valida)
+
+const windowError = document.querySelector('.error');
+
+if(windowError){
+    const btnWindowClose = windowError.querySelector('.btnClose');
+    btnWindowClose.addEventListener('click', () => { windowError.remove(); });
+}

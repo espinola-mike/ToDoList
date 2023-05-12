@@ -16,6 +16,7 @@ $user = User::getUserByEmail($email); # Instanciando un objeto de la clase usuar
 $allTasks = Task::getAllTasks(User::getUserId($email));
 $todayTasks = Task::getTodayTasks(User::getUserId($email));
 $nextTasks = Task::getNextTasks(User::getUserId($email));
+$lostTasks = Task::getLostTasks(User::getUserId($email));
 
 require 'uploadImage.php'; # Script encargado de subir foto de perfil
 require 'addTask.php'; # Script encargado de recibir datos de la tarea desde el formulario y registrarlo en la base de datos

@@ -72,6 +72,22 @@ class Task extends Database{
             return false;
         }
     }
+    // Obtiene todas las tareas perdidas
+    static function getLostTasks($user_id){
+        try{
+            $database = new Database();
+            $pdo = $database->connect();
+            $sql = 'SELECT * FROM tasks WHERE user_id = :user_id AND task_date < :today ORDER BY task_date';
+            $query = $pdo->prepare($sql);
+            $query->execute([':user_id'=>$user_id, 'today'=>date('Y-m-d', strtotime('now'))]);
+            $tasks = $query->fetchAll();
+            $pdo = null;
+            return $tasks;
+        }catch(PDOException $e){
+            echo 'Error: '.$e->getMessage();
+            return false;
+        }
+    }
 
     // Elimina un registro correspondiente a una tarea pendiente o realizada
     static function deleteTask($task_id){

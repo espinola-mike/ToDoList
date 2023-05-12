@@ -57,6 +57,7 @@
     --blue-3: #141E30;
 }
 body{
+    position: relative;
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
@@ -525,7 +526,11 @@ body{
 
 .modalImageUpload-form li{
     width: 100%;
-    margin: 1em 0;
+    margin-bottom: 1em;
+}
+
+.modalImageUpload-form ul hr{
+    margin-bottom: 1em;
 }
 
 .modalImageUpload-header{
@@ -583,15 +588,17 @@ body{
     padding: 5px 10px;
 }
 
-.modalImageUpload-form .input .inputFile .btnInputImage:hover{
-    background: var(--blue);
-}
-
 .modalImageUpload-form .input .inputFile .btnInputImage.valid{
     background: #02ff899d;
+    border: none;
 }
 .modalImageUpload-form .input .inputFile .btnInputImage.invalid{
     background: var(--red-2);
+    border: none;
+}
+
+.modalImageUpload-form .input .inputFile .btnInputImage:hover{
+    background: var(--blue);
 }
 
 .modalImageUpload-form .inputSubmit{
@@ -775,6 +782,52 @@ body{
 .btnCancelTask:active{
     background: var(--white);
     color: var(--black);
+}
+
+/* Error al subir imagen de perfil */
+
+.error{
+    width: 280px;
+    position: fixed;
+    z-index: 1000;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background: var(--red-2);
+    border-radius: 10px;
+    border: 1px solid var(--red-1);
+}
+
+.error .line{
+    border: 1px solid var(--black1);
+    margin-bottom: 10px;
+}
+
+.error ul{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.error ul li {
+    margin-bottom: 0.8em;
+}
+
+.error ul li:first-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error ul li .headerError{
+    font-weight: 600;
+}
+
+.error ul li .btnClose{
+    font-size: 1.25em;
+    color: var(--red-1);
+    cursor: pointer;
 }
 
 /* responsive design */

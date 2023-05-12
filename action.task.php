@@ -1,9 +1,6 @@
 <?php
-require 'lib/Database.php';
-require 'models/User.php';
-require 'models/Task.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && (isset($_GET['finish_task']) || isset($_GET['delete_task']))) {
     if (isset($_GET['finish_task'])) {
         Task::deleteTask($_GET['finish_task']);
     } else {
@@ -18,9 +15,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateTask'])) {
     $task_date = $_POST['taskDate'];
 
     $errors = [];
-    $error_task_name = '<span>Error de nombre de tarea:</span>';
-    $error_task_description = '<span>Error de descripción de tarea:</span>';
-    $error_task_date = '<span>Error de fecha de tarea:</span>';
+    $error_task_name = '<span><b>Error de nombre de tarea:</b></span>';
+    $error_task_description = '<span><b>Error de descripción de tarea:</b></span>';
+    $error_task_date = '<span><b>Error de fecha de tarea:</b></span>';
 
     if (!empty($task_name)) {
         // Validando nombre de tarea
@@ -39,7 +36,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateTask'])) {
     if (!empty($task_date)) {
         // Validando la fecha de tarea
         $date_array = explode('-', $task_date);
-        if (!checkdate(intval($date_array[1]), intval($date_array[2]), intval($date_array[0]))) {
+        if (count($date_array) == 3) {
+            if (!checkdate(intval($date_array[1]), intval($date_array[2]), intval($date_array[0]))) {
+                $errors['task_date'] = $error_task_date . ' La fecha introducida es inválida.';
+            }
+        }else {
             $errors['task_date'] = $error_task_date . ' La fecha introducida es inválida.';
         }
     }else{
